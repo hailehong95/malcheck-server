@@ -18,3 +18,7 @@ MINIO_BUCKET_NAME = os.getenv("MINIO_BUCKET_NAME")
 MINIO_SERVICE_LOG_FILE = os.path.join(DATA_DIR, "minio-api.log")
 client = Minio(MINIO_HOST, access_key=MINIO_ACCESS_KEY, secret_key=MINIO_SECRET_KEY, )
 # client = Minio(MINIO_HOST, access_key=MINIO_ACCESS_KEY, secret_key=MINIO_SECRET_KEY, secure=False, )
+
+# TELEGRAM
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
