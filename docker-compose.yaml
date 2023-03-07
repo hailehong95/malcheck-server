@@ -30,4 +30,5 @@ services:
       - MINIO_BUCKET_NAME=${MINIO_BUCKET_NAME}
     ports:
       - "80:5000"
-
+    volumes:
+      - ./data:/app/minio_api/data/
