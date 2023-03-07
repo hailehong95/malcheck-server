@@ -1,16 +1,33 @@
 version: "3"
 services:
-  minio:
-    image: minio/minio
-    command: server -C /etc/minio --address ":9000" --console-address ":9001" /data
-    environment:
-      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
-      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
-    ports:
-      - "9000:9000"
-      - "9001:9001"
-    volumes:
-      - "miniodata:/data"
+#  minio-srv:
+#    restart: always
+#    image: minio/minio
+#    command: server --address ":9000" --console-address ":9001" /data
+#    env_file:
+#      - .env
+#    environment:
+#      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+#      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+#    ports:
+#      - "9000:9000"
+#      - "9001:9001"
+#    volumes:
+#      - ./miniodata:/data
 
-volumes:
-  miniodata:
+  minio-proxy:
+    restart: always
+    image: minio_proxy:latest
+    build:
+        context: ./minio-api
+        dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - MINIO_HOST=${MINIO_HOST}
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+      - MINIO_BUCKET_NAME=${MINIO_BUCKET_NAME}
+    ports:
+      - "5000:5000"
+

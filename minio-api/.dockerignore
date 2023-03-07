@@ -1,5 +1,5 @@
 # Files
-.env
+#.env
 .env.example
 .gitignore
 .dockerignore
@@ -8,8 +8,10 @@ README.md
 LICENSE
 docker-compose.yaml
 *.exe
+*.log
 
 # Directories
 __pycache__/
 .idea/
 venv/
+bin/
