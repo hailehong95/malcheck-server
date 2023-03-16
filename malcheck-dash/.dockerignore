@@ -1,0 +1,16 @@
+# Files
+.env
+.env.example
+.gitignore
+.dockerignore
+Dockerfile
+README.md
+LICENSE
+*.yaml
+*.exe
+*.log
+
+# Directories
+__pycache__/
+.idea/
+venv/

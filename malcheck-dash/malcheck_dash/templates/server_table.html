@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table id="data" class="table table-striped">
+        <thead>
+        <tr>
+            <th>Address</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Platform</th>
+            <th>Status</th>
+            <th>UpdateAt</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#data').DataTable({
+                ajax: '/api/v1/data',
+                serverSide: true,
+                columns: [
+                    {data: 'address'},
+                    {data: 'emp_id'},
+                    {data: 'name'},
+                    {data: 'platform_os'},
+                    {data: 'status'},
+                    {data: 'timestamp'}
+                ],
+            });
+        });
+    </script>
+{% endblock %}
