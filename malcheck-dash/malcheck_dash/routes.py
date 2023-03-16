@@ -66,7 +66,7 @@ def data():
             'draw': request.args.get('draw', type=int),
         }
     except Exception as ex:
-        pass
+        logger.info(str(ex))
 
 
 # Get Pre-signed URLs
@@ -93,8 +93,7 @@ def user_checkin():
         address = request_data.get("address")
         signature = request_data.get("signature")
         platform_os = request_data.get("platform_os")
-        item = Users(address=address, emp_id=emp_id, name=name, platform_os=platform_os, status=status,
-                     signature=signature)
+        item = Users(address=address, emp_id=emp_id, name=name, platform_os=platform_os, status=status, signature=signature)
         db.session.add(item)
         db.session.commit()
         return make_response(jsonify({"message": "successful"}), 200)
