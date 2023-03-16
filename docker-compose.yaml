@@ -15,11 +15,11 @@ services:
 #    volumes:
 #      - ./miniodata:/data
 
-  minio-proxy:
+  malcheck-dash:
     restart: always
-    image: minio_proxy:latest
+    image: malcheck_dash:latest
     build:
-        context: ./minio-api
+        context: ./malcheck-dash
         dockerfile: Dockerfile
     env_file:
       - .env
@@ -28,7 +28,13 @@ services:
       - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
       - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
       - MINIO_BUCKET_NAME=${MINIO_BUCKET_NAME}
+      - CHAT_ID={CHAT_ID}
+      - BOT_TOKEN={BOT_TOKEN}
+      - DASH_USER={DASH_USER}
+      - DASH_PASSWORD={DASH_PASSWORD}
+      - SECRET_KEY={SECRET_KEY}
     ports:
       - "80:5000"
     volumes:
-      - ./data:/app/minio_api/data/
+      - ./data/dbs:/app/dbs/
+      - ./data/logs:/app/logs/
