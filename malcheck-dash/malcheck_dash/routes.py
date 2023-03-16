@@ -80,7 +80,6 @@ def user_get_upload_url():
             return make_response(jsonify({"url": url}), 200)
     except Exception as ex:
         logger.info(str(ex))
-        return make_response(jsonify({"message": "Oops!"}), 204)
 
 
 # Users register/checkin
@@ -100,7 +99,6 @@ def user_checkin():
         return make_response(jsonify({"message": "successful"}), 200)
     except Exception as ex:
         logger.info(str(ex))
-        return make_response(jsonify({"message": "Oops!"}), 204)
 
 
 # Users finish/checkout
@@ -120,4 +118,3 @@ def user_checkout():
             return make_response(jsonify({"message": "successful"}), 200)
     except Exception as ex:
         logger.info(str(ex))
-        return make_response(jsonify({"message": "Oops!"}), 204)
