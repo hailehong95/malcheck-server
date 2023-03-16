@@ -4,12 +4,12 @@ from malcheck_dash.config import db
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    address = db.Column(db.String(16))
+    address = db.Column(db.String(16), index=True)
     emp_id = db.Column(db.String(16), index=True)
     name = db.Column(db.String(64), index=True)
-    platform_os = db.Column(db.String(16))
-    status = db.Column(db.String(16))
-    signature = db.Column(db.String(32))
+    platform_os = db.Column(db.String(16), index=True)
+    status = db.Column(db.String(16), index=True)
+    signature = db.Column(db.String(32), index=True)
     timestamp = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
     def to_dict(self):
