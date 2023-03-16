@@ -110,11 +110,11 @@ def user_checkout():
         emp_id = request_data.get("emp_id")
         address = request_data.get("address")
         signature = request_data.get("signature")
-        dash_send_telegram(f"{address} - {emp_id} - {name}")
         item = Users.query.filter_by(emp_id=emp_id, signature=signature, status="Scanning").first()
         if item:
             item.status = "Successful"
             db.session.commit()
+            dash_send_telegram(f"{address} - {emp_id} - {name}")
             return make_response(jsonify({"message": "successful"}), 200)
     except Exception as ex:
         logger.info(str(ex))
