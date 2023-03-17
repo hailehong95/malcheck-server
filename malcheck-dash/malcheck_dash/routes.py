@@ -21,6 +21,7 @@ def index():
 
 
 @app.route('/api/v1/data')
+@auth.login_required
 def data():
     try:
         query = Users.query
