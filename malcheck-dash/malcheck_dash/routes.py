@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 from malcheck_dash.models import Users
 from malcheck_dash.logging import logger
 from malcheck_dash.utils import dash_send_telegram
@@ -115,7 +115,9 @@ def user_checkout():
         if item:
             item.status = "Successful"
             db.session.commit()
-            dash_send_telegram(f"{address} - {emp_id} - {name}")
+            tm_now = datetime.now().strftime("%Y/%m/%d, %H:%M:%S")
+            text = f"{tm_now} - MalCheck - {address} - {emp_id} - {name}"
+            dash_send_telegram(text)
             return make_response(jsonify({"message": "successful"}), 200)
     except Exception as ex:
         logger.info(str(ex))
