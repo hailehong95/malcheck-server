@@ -94,7 +94,8 @@ def user_checkin():
         address = request_data.get("address")
         signature = request_data.get("signature")
         platform_os = request_data.get("platform_os")
-        item = Users(address=address, emp_id=emp_id, name=name, platform_os=platform_os, status=status, signature=signature)
+        timestamp = datetime.now()
+        item = Users(address=address, emp_id=emp_id, name=name, platform_os=platform_os, status=status, signature=signature, timestamp=timestamp)
         db.session.add(item)
         db.session.commit()
         return make_response(jsonify({"message": "successful"}), 200)
@@ -113,6 +114,7 @@ def user_checkout():
         signature = request_data.get("signature")
         item = Users.query.filter_by(emp_id=emp_id, signature=signature, status="Scanning").first()
         if item:
+            item.timestamp = datetime.now()
             item.status = "Successful"
             db.session.commit()
             tm_now = datetime.now().strftime("%Y/%m/%d, %H:%M:%S")
