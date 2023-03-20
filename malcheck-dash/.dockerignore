@@ -9,6 +9,7 @@ LICENSE
 *.yaml
 *.exe
 *.log
+create_fake_users.py
 
 # Directories
 __pycache__/
