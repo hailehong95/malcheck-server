@@ -8,8 +8,8 @@ from flask_httpauth import HTTPDigestAuth
 load_dotenv()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
-LOGS_DIR = os.path.join(os.path.dirname(BASE_DIR), "logs")
-DBS_DIR = os.path.join(os.path.dirname(BASE_DIR), "dbs")
+LOGS_DIR = os.path.join(os.path.dirname(BASE_DIR), "log")
+DBS_DIR = os.path.join(os.path.dirname(BASE_DIR), "db")
 DASH_LOG_FILE = os.path.join(LOGS_DIR, "dash.log")
 DASH_DBS_FILE = os.path.join(DBS_DIR, "dash.sqlite")
 try:
